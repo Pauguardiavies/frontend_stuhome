@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">StuHome</string>
+    <string name="login_button">Login </string>
+    <string name="register_button">Register</string>
+    <string name="button_siguiente">Siguiente</string>
+    <string name="button_atras">Atras</string>
+    <string name="text_ini">Bienvenido, puedes volver al menu principal o avanzar, pulsando sobre los botones de la parte inferior.</string>
+    <string name="f">facebook</string>
+    <string name="button_final">Volver al menu principal</string>
+    <string name="button_final2">Cerrar App</string>
+    <string name="text_header_def"> ABOUTS US</string>
+    <string name="button_finaldef">
+        OUR IDEA CONSISTS IN THE CREATION OF AN APPLICATION THAT HELP ALL THOSE STUDENTS WHO HAVE THE NEED
+        TO FIND A HOUSING BOTH IN A BIG CITY OR SURROUNDING VILLAGES. </string>
+
+    <string name="text_def">Gracias por usar la app, puedes volver al menu principal o cerrar la app.</string>
+
+</resources>
