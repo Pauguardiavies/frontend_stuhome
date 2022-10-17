@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
 
             val intent:Intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
+
+
         }
     }
 }
