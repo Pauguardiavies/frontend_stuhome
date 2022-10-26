@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class StuHomeAdapter:RecyclerView.Adapter <StuHomeAdapter.ViewHolder>(){
 
+
     val  titles= arrayOf(
         "Jiahan Chen",
         "Lhuis Marcelo",

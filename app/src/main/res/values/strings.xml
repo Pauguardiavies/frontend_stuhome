@@ -17,5 +17,9 @@
     <string name="texto_equipo">Lhuis Marcelo:Lorem ipsum</string>
     <string name="texto_equipo2">Jiahan Chen:Lorem ipsum</string>
     <string name="texto_equipo3">Pau Guardia:Lorem ipsum</string>
+    <string name="nombre_miembro">Nombre Miembro:</string>
+    <string name="descripcion_miembro">Descripcion:</string>
+    <string name="num_tel">Numero de telefono</string>
+    <string name="email">Email:</string>
 
 </resources>

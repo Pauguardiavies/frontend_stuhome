@@ -7,7 +7,7 @@
     android:background="#00897B"
     tools:context=".MainActivity2" >
 
-    <Button
+    //<Button
         android:id="@+id/button_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -49,15 +49,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_miembros"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
         app:layout_constraintBottom_toTopOf="@+id/button_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto_inicial"
-        app:srcCompat="@drawable/gatotecleando" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_inicial" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
