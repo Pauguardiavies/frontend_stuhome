@@ -13,17 +13,28 @@ class MainActivity3 : AppCompatActivity() {
         this.supportActionBar?.hide()
         setContentView(R.layout.activity_main3)
 
-        val recyclerView=findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter=StuHomeAdapter()
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val adapter = StuHomeAdapter()
 
-        recyclerView.layoutManager=LinearLayoutManager(this)
-        recyclerView.adapter=adapter
-        val btn: Button =findViewById(R.id.button_home)
-        btn.setOnClickListener{
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
+
+        val btn: Button = findViewById(R.id.button_home)
+        btn.setOnClickListener {
 
             val intent: Intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+        val btn2: Button = findViewById(R.id.button_home2)
+        btn2.setOnClickListener {
+
+            val intentNext: Intent = Intent(this, MainActivity4::class.java)
+            startActivity(intentNext)
+
+        }
     }
+}
+
        /* val btn2: Button =findViewById(R.id.button_end)
         btn2.setOnClickListener {
 
@@ -33,9 +44,4 @@ class MainActivity3 : AppCompatActivity() {
             finish();
 
             startActivity(intent2);*/
-        }
 
-
-
-
-            }

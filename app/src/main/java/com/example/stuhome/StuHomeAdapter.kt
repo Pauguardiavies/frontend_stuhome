@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class StuHomeAdapter:RecyclerView.Adapter <StuHomeAdapter.ViewHolder>(){
-
 
     val  titles= arrayOf(
         "Jiahan Chen",
@@ -19,9 +20,9 @@ class StuHomeAdapter:RecyclerView.Adapter <StuHomeAdapter.ViewHolder>(){
         "Programador FrontEnd experto en Kotlin y Android Studio",
         "Programador  experto en el estudio de mercado.")
     val  images= intArrayOf(
-      R.drawable.ic_launcher_background,
-      R.drawable.ic_launcher_background,
-      R.drawable.ic_launcher_background
+        R.drawable.aboutsus,
+        R.drawable.aboutsus,
+        R.drawable.aboutsus
       )
 
 
@@ -47,6 +48,7 @@ class StuHomeAdapter:RecyclerView.Adapter <StuHomeAdapter.ViewHolder>(){
     var profileImg:ImageView
     var profileTitle:TextView
     var profileInfo:TextView
+
 
     init{
 
