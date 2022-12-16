@@ -13,3 +13,9 @@ class DogViewHolder (view:View):RecyclerView.ViewHolder(view){
         Picasso.get().load(image).into(binding.ivDog)
     }
 }
+
+
+// La función bind() llamará desde el adapter
+// y le pasará una url en formato String,
+// una vez dentro usaremos la librería de Picasso
+// para cargar esa URL en nuestro iVDog.

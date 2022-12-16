@@ -20,38 +20,38 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity4 : AppCompatActivity(),SearchView.OnQueryTextListener {
 
 
-    private lateinit var binding: LayoutDogsBinding;
-    private lateinit var adapter:DogAdapter
-    private val dogImages= mutableListOf<String>()
+    private lateinit var binding: ActivityMain4Binding;
+    private lateinit var adapter: DogAdapter
+    private val dogImages = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=LayoutDogsBinding.inflate(layoutInflater)
+        binding = ActivityMain4Binding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.svDogs.setOnQueryTextListener(this)
         initRecyclerView()
     }
 
     private fun initRecyclerView() {
-        adapter= DogAdapter(dogImages)
-        binding.rvDogs.layoutManager=LinearLayoutManager(this)
+        adapter = DogAdapter(dogImages)
+        binding.rvDogs.layoutManager = LinearLayoutManager(this)
         binding.rvDogs.adapter = adapter
     } //Llama el recyclerView
 
     //Creando Retrofit
-    private  fun getRetrofit():Retrofit{
-
+    private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/breeds/")
+            .baseUrl("https://dog.ceo/api/breed/")
             .addConverterFactory(GsonConverterFactory.create()) //hace la conversion del json a DogsResponse
             .build()
     }
+
     //Creando Corutine,
     // para que  lo que hacemos dentro lo ejecute de manera secundaria
-    private fun searchByName(query:String) {
+    private fun searchByName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val call: Response<DogsResponse> = getRetrofit().create(APIService::class.java).getDogsByBreeds("$query/images")
-            val puppies: DogsResponse? = call.body()
+            val call = getRetrofit().create(APIService::class.java).getDogsByBreeds("$query/images")
+            val puppies = call.body()
             runOnUiThread {
 
                 if (call.isSuccessful) {
@@ -70,18 +70,22 @@ class MainActivity4 : AppCompatActivity(),SearchView.OnQueryTextListener {
         }
 
     }
+
     private fun showError() {
         Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
     }
+
     //Estos metodos nos avisan cuando el usuario realice un cambio
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(!query.isNullOrEmpty()){
+        if (!query.isNullOrEmpty()) {
             searchByName(query.lowercase())
         }
         return true
-        }
+    }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-    return true
+        return true
     }
+
+
 }
