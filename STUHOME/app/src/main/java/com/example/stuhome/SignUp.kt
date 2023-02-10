@@ -28,7 +28,6 @@ class SignUp : AppCompatActivity() {
         val registerSigninBtn:TextView = findViewById(R.id.register_singinBtn)
 
         //Variables EditText de user:
-        val usernameEditText = findViewById<EditText>(R.id.register_username)
         val nameEditText = findViewById<EditText>(R.id.register_name)
         val surnameEditText = findViewById<EditText>(R.id.register_surname)
         val studiesEditText = findViewById<EditText>(R.id.register_studies)
@@ -47,18 +46,17 @@ class SignUp : AppCompatActivity() {
             val direction:String = directionEditText.text.toString();
             val description:String = descriptionEditText.text.toString();
             val password:String = passwordEditText.text.toString();
-            val username = usernameEditText.text.toString();
             val intent: Intent = Intent(this,Login::class.java);
 
             //llamar la funcion de registro:
-            if(username.isEmpty() || surname.isEmpty() || mail.isEmpty() || name.isEmpty() ||
+            if(surname.isEmpty() || mail.isEmpty() || name.isEmpty() ||
             password.isEmpty() || studies.isEmpty() || direction.isEmpty() || description.isEmpty()){
             val text = "You have to complete the fields."
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(applicationContext, text, duration)
             toast.show()
         }else{
-            apiRegister(username,name,surname,studies,mail,direction,description,password,intent)
+            apiRegister(name,surname,studies,mail,direction,description,password,intent)
         }
         }
 
@@ -70,7 +68,7 @@ class SignUp : AppCompatActivity() {
     }
 
     //Funcion Retrofit para crear usuarios nuevos.
-    fun apiRegister(username:String,name:String,surname:String,studies:String,mail:String,direction: String,description:String,password:String,intent: Intent){
+    fun apiRegister(name:String,surname:String,studies:String,mail:String,direction: String,description:String,password:String,intent: Intent){
         //Codigo Retrofit:
         CoroutineScope(Dispatchers.IO).launch {
             val interceptor = HttpLoggingInterceptor()
@@ -80,7 +78,7 @@ class SignUp : AppCompatActivity() {
                 .addConverterFactory(
                     GsonConverterFactory.create()).client(client).build()
             var respuesta = conexion.create(APIRetrofit::class.java)
-                .ApiRegister("signin", User(0,username,password,name,surname,mail,description,studies,direction));
+                .ApiRegister("signin", User(0,password,name,surname,mail,description,studies,direction));
             withContext(Dispatchers.Main) {
                 //SI el usuario ha creado su cuenta correctamente, pues ira a la pagina de home de applicacion.
                 if (respuesta.isSuccessful) {

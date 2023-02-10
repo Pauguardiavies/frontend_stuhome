@@ -25,7 +25,7 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_signin)
 
         //Variables de editText:
-        val userEt = findViewById<EditText>(R.id.usernameET);
+        val emailEt = findViewById<EditText>(R.id.emailET);
         val passEt = findViewById<EditText>(R.id.passwordET);
 
         //Variables de signin layout.
@@ -42,22 +42,22 @@ class Login : AppCompatActivity() {
         signinBtn.setOnClickListener {
             val intent: Intent = Intent(this, Home::class.java)
             //pasar valores de edittext a String.
-            val username:String  = userEt.text.toString();
+            val email:String  = emailEt.text.toString();
             val password:String = passEt.text.toString();
             //Solo va iniciar cuando los campos de username y password no esta vacio.
-            if (userEt.text.isEmpty() || passEt.text.isEmpty()) {
+            if (emailEt.text.isEmpty() || passEt.text.isEmpty()) {
                 val text = "Enter your usernmae or password."
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
             }else{
-               apiLogin(username,password,intent)
+               apiLogin(email,password,intent)
             }
         }
 
     }
 
-    fun apiLogin(username:String,password:String,intent: Intent){
+    fun apiLogin(email:String,password:String,intent: Intent){
         //Codigo Retrofit:
         CoroutineScope(Dispatchers.IO).launch {
             val interceptor = HttpLoggingInterceptor()
@@ -67,19 +67,19 @@ class Login : AppCompatActivity() {
                 .addConverterFactory(
                     GsonConverterFactory.create()).client(client).build()
             var respuesta = conexion.create(APIRetrofit::class.java)
-                .ApiLogin("login", User(0,username,password,"","","","","",""));
+                .ApiLogin("login", User(0,password,"","",email,"","",""));
             withContext(Dispatchers.Main) {
                 //SI el usuario ha creado su cuenta correctamente, pues ira a la pagina de home de applicacion.
                 if (respuesta.isSuccessful) {
                     val duration = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(applicationContext, "Welcome!!", duration)
                     toast.show()
-                    intent.putExtra("username",username)
+                    intent.putExtra("email",email)
                     intent.putExtra("password",password)
                     startActivity(intent); //ir al Home Activity.
                 }else {
                     val duration = Toast.LENGTH_SHORT
-                    val toast = Toast.makeText(applicationContext, "The name or password is incorrect", duration)
+                    val toast = Toast.makeText(applicationContext, "The email or password is incorrect", duration)
                     toast.show()
                 }
             }

@@ -32,20 +32,21 @@ class ProfileFragment : Fragment() {
         //Aqui es Donde se pone las creaciones de variables y funciones. funciona igualmente
         // que en los activitys.
 
-        val username:TextView = view.findViewById<TextView>(R.id.profile_username);
-        val direction:TextView = view.findViewById<TextView>(R.id.profile_direction);
-        val studies:TextView = view.findViewById<TextView>(R.id.profile_studies);
-        val editProfileBtn:AppCompatButton = view.findViewById<AppCompatButton>(R.id.edit_profile_btn);
+        val username: TextView = view.findViewById<TextView>(R.id.profile_username);
+        val direction: TextView = view.findViewById<TextView>(R.id.profile_direction);
+        val studies: TextView = view.findViewById<TextView>(R.id.profile_studies);
+        val editProfileBtn: AppCompatButton =
+            view.findViewById<AppCompatButton>(R.id.edit_profile_btn);
 
         //Pasar el username y el password que hemos introducido en Activity Login:
         val intent = requireActivity().intent;
-        val loginName = intent.getStringExtra("username");
+        val loginEmail = intent.getStringExtra("email");
         val loginPass = intent.getStringExtra("password");
 
         val logOutBtn: AppCompatButton = view.findViewById(R.id.logOutBtn)
 
         //llamar funcion profileLogin para mostrar el informacion del perfil del usuario:
-        profileLogin(loginName.toString(),loginPass.toString(), username,direction,studies);
+        profileLogin(loginEmail.toString(), loginPass.toString(), username, direction, studies);
 
         //A dar el button logout, ira a la pagina de signin.
         logOutBtn.setOnClickListener {
@@ -55,6 +56,7 @@ class ProfileFragment : Fragment() {
 
         editProfileBtn.setOnClickListener {
             val intent = Intent(activity, EditProfile::class.java)
+            intent.putExtra("loginEmail",loginEmail.toString())
             startActivity(intent)
         }
 
@@ -62,7 +64,8 @@ class ProfileFragment : Fragment() {
         return view
     }
 
-    fun profileLogin(loginUsername:String,loginPassword:String,username:TextView,direction:TextView,studies:TextView){
+    fun profileLogin(loginEmail: String, loginPassword: String, username: TextView, direction: TextView, studies: TextView
+    ) {
         //Codigo Retrofit:
         CoroutineScope(Dispatchers.IO).launch {
             val interceptor = HttpLoggingInterceptor()
@@ -70,17 +73,21 @@ class ProfileFragment : Fragment() {
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
             val conexion = Retrofit.Builder().baseUrl("http://10.0.2.2:8080/api/users/")
                 .addConverterFactory(
-                    GsonConverterFactory.create()).client(client).build()
+                    GsonConverterFactory.create()
+                ).client(client).build()
             var respuesta = conexion.create(APIRetrofit::class.java)
-                .ApiProfileLogin("pLogin", User(0,loginUsername,loginPassword,"","","","","",""));
+                .ApiProfileLogin(
+                    "pLogin",
+                    User(0, loginPassword, "", "", loginEmail, "", "", "")
+                );
             withContext(Dispatchers.Main) {
                 //SI el usuario ha creado su cuenta correctamente, pues ira a la pagina de home de applicacion.
                 if (respuesta.isSuccessful) {
                     var user = respuesta.body();
                     //Pasar los infos del usuario al perfil.
-                    username.setText("Hello, "+user?.name + " "+user?.apellido);
-                    direction.setText("Direction: "+user?.direccion);
-                    studies.setText("Studies: "+user?.studies);
+                    username.setText("Hello, " + user?.name + " " + user?.apellido);
+                    direction.setText("Direction: " + user?.direccion);
+                    studies.setText("Studies: " + user?.studies);
                 }
             }
         }

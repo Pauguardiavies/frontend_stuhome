@@ -4,7 +4,6 @@ import android.text.Editable
 
 data class User(
     var id:Long,
-    var username: String,
     var password: String,
     var name: String,
     var apellido: String,
@@ -14,7 +13,7 @@ data class User(
     var direccion: String
     ) {
     override fun toString(): String {
-        return "User(id=$id, username='$username', password='$password', name='$name', apellido='$apellido', email='$email', description='$description', studies='$studies', direccion='$direccion')"
+        return "User(id=$id, password='$password', name='$name', apellido='$apellido', email='$email', description='$description', studies='$studies', direccion='$direccion')"
     }
 }
 

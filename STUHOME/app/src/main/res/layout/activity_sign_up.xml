@@ -37,11 +37,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <EditText
                     style="@style/TextViewRegister"
-                    android:hint="@string/register_username"
-                    android:id="@+id/register_username"/>
+                    android:hint="Please enter your mail."
+                    android:id="@+id/register_mail"/>
                 <EditText
                     style="@style/TextViewRegister"
                     android:hint="@string/register_name"
@@ -50,10 +49,6 @@
                     style="@style/TextViewRegister"
                     android:hint="@string/register_surname"
                     android:id="@+id/register_surname"/>
-                <EditText
-                    style="@style/TextViewRegister"
-                    android:hint="Please enter your mail."
-                    android:id="@+id/register_mail"/>
                 <EditText
                     style="@style/TextViewRegister"
                     android:hint="@string/register_studies"

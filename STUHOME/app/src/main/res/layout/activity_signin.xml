@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/round_back_dark_blue5_15"
-        android:hint="@string/login_username"
+        android:hint="Email"
         android:maxLines="1"
         android:inputType="text"
         android:textSize="16sp"
@@ -48,7 +48,7 @@
         android:layout_marginTop="40dp"
         android:textColor="#DD272626"
         android:textColorHint="#DD8E8B8B"
-        android:id="@+id/usernameET"/>
+        android:id="@+id/emailET"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
